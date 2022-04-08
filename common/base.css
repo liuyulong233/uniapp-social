@@ -1,0 +1,304 @@
+/* 根据tailwindcss 抽离出常用的原子类和常用的css */
+
+/* 溢出 */
+.overflow-auto {
+	overflow: auto;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.overflow-visible {
+	overflow: visible;
+}
+
+.overflow-scroll {
+	overflow: scroll;
+}
+
+.overscroll-auto {
+	overscroll-behavior: auto;
+}
+
+.overscroll-contain {
+	overscroll-behavior: contain;
+}
+
+.overscroll-none {
+	overscroll-behavior: none;
+}
+
+/* display */
+.flex {
+	display: flex;
+}
+
+.block {
+	display: block;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.grid {
+	display: grid;
+}
+
+.hidden {
+	display: none;
+}
+
+/* 定位 */
+.fixed {
+	position: fixed;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.relative {
+	position: relative;
+}
+
+/* 可见性 */
+.visible {
+	visibility: visible;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+/* Flex Direction */
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-row-reverse {
+	flex-direction: row-reverse;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+	flex-wrap: wrap-reverse;
+}
+
+.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
+.flex-1 {
+	flex: 1 1 0%;
+}
+
+.flex-auto {
+	flex: 1 1 auto;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+.flex-shrink {
+	flex-shrink: 1;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-end {
+	justify-content: flex-end;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+.align-middle {
+	align-items: center;
+}
+
+.items-end {
+	align-items: flex-end;
+}
+
+/* 容器大小 */
+.w-full {
+	width: 100%;
+}
+
+.h-screen {
+	height: 100vh;
+}
+
+.w-screen {
+	width: 100vw;
+}
+
+.h-full {
+	height: 100%;
+}
+
+/* 圆角 */
+.round {
+	border-radius: 5000px;
+}
+
+.radius {
+	border-radius: 12px;
+}
+
+/* 文字省略 */
+.ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* 多行 */
+
+.ellipsis-2 {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+/* 滚动条 */
+.scrollbar-hidden::-webkit-scrollbar {
+	display: none;
+}
+
+/* 文字颜色 使用colorui颜色*/
+.text-white {
+	color: #fff;
+}
+
+.text-black {
+	color: #333333;
+}
+
+.text-gray {
+	color: #aaaaaa;
+}
+
+.text-grey {
+	color: #8799a3;
+}
+
+.text-pink {
+	color: #e03997;
+}
+
+.text-mauve {
+	color: #9c26b0;
+}
+
+.text-purple {
+	color: #6739b6;
+}
+
+.text-blue {
+	color: #0081ff;
+}
+
+.text-cyan {
+	color: #1cbbb4;
+}
+
+.text-green {
+	color: #39b54a;
+}
+
+.text-olive {
+	color: #8dc63f;
+}
+
+.text-yellow {
+	color: #fbbd08;
+}
+
+.text-orange {
+	color: #f37b1d;
+}
+
+.text-red {
+	color: #e54d42;
+}
+
+/* 背景颜色 使用colorui颜色*/
+.bg-white {
+	background-color: #fff;
+}
+
+.bg-black {
+	background-color: #333333;
+}
+
+.bg-gray {
+	background-color: #aaaaaa;
+}
+
+.bg-grey {
+	background-color: #8799a3;
+}
+
+.bg-pink {
+	background-color: #e03997;
+}
+
+.bg-mauve {
+	background-color: #9c26b0;
+}
+
+.bg-purple {
+	background-color: #6739b6;
+}
+
+.bg-blue {
+	background-color: #0081ff;
+}
+
+.bg-cyan {
+	background-color: #1cbbb4;
+}
+
+.bg-green {
+	background-color: #39b54a;
+}
+
+.bg-olive {
+	background-color: #8dc63f;
+}
+
+.bg-yellow {
+	background-color: #fbbd08;
+}
+
+.bg-orange {
+	background-color: #f37b1d;
+}
+
+.bg-red {
+	background-color: #e54d42;
+}
