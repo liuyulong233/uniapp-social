@@ -2,28 +2,18 @@
 	<view>
 		<template v-if="list.length>0">
 			<!--图文列表-->
-			<block v-for="(item,index) in list" :key="index">
-			    <indexList :item="item" :index="index"></indexList>
-			</block>
+			
 			 <!--上拉加载-->
-			<loadMore :loadtext="loadtext"></loadMore>
 		</template>
 		<template v-else-if="isseach&&list.length<1">
 			 <!--无数据-->
-			<noThing></noThing>
 		</template>
 	</view>
 </template>
 
 <script>
-	import indexList from '../../compoents/index/index-list.vue';
-	import loadMore from '../../compoents/common/load-more.vue';
-	import noThing from '../../compoents/common/no-thing.vue';
 	export default {
 		components:{
-			indexList,
-			loadMore,
-			noThing
 		},
 		data() {
 			return {

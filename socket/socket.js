@@ -8,6 +8,7 @@ import {
 
 function getOption() {
 	let option = {}
+	// console.log('getOption',store.state.isLogin)
 	if (!store.state.isLogin) {
 		//#ifdef H5
 		let userinfo = JSON.parse(sessionStorage.getItem("temp_userinfo"));
@@ -15,7 +16,7 @@ function getOption() {
 		//#ifndef H5 
 		let userinfo = JSON.parse(uni.getStorageSync("temp_userinfo")||'{}');
 		//#endif
-		if (!userinfo) {
+		if (!userinfo.uid) {
 			let uid = guid(16, 16)
 			let obj = {
 				uid,
@@ -31,6 +32,7 @@ function getOption() {
 			uni.setStorageSync('temp_userinfo', JSON.stringify(obj))
 			//#endif
 		}
+		// console.log('temp_userinfo',store.state.isLogin)
 		option.uid = userinfo.uid
 
 	} else {

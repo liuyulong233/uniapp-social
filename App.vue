@@ -6,7 +6,8 @@
 <script>
 	export default {
 		onLaunch: function() {
-			this.lib.NetWork.On();
+			// this.lib.NetWork.On();
+			// uni.clearStorage()
 		},
 		onShow: function() {
 			// console.log('App Show',this.$store.state.userinfo)

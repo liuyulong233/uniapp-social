@@ -4,20 +4,14 @@
 		<comment-list ref="comment" :topic_id="topic_id"></comment-list>
 
 		<!-- <view style="height: 130upx;"></view> -->
-		<!-- 输入框 -->
-		<!-- <userChat @submit="submit"></userChat> -->
 		<!-- 分享 -->
-		<shareMore :maskshow="maskshow" :providerList="providerList" @ismask="alertmask"></shareMore>
+		<share :maskshow="maskshow" :providerList="providerList" @ismask="alertmask"></share>
 	</view>
 </template>
 
 <script>
-	import userChat from "../../compoents/userchat/user-chat.vue";
-	import shareMore from "../../compoents/common/share-more.vue";
 	export default {
 		components: {
-			userChat,
-			shareMore
 		},
 		data() {
 			return {

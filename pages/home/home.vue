@@ -1,173 +1,200 @@
 <template>
-	<view class="wrap">
-		<template v-if="!isLogin">
-			<!-- 未登录 -->
-			<view class="home-nologin-title flex align-middle justify-center">登陆，体验更多功能</view>
-			<!-- 更多登陆 -->
-			<third-party-login></third-party-login>
-			<!-- 账号密码登陆 -->
-			<view class="home-password flex align-middle justify-center" @tap="tologin">账号密码登陆<view class="icon iconfont icon-jinru"></view>
-			</view>
-		</template>
-		<!-- 已登陆 -->
-		<view v-else class="home-islogin flex align-middle" @tap="touserspace">
-			<avatar class="image" :src="userinfo.avatar"></avatar>
-			<view class="home-islogin-info flex-1">
-				<view>{{userinfo.nickname}}</view>
-				<view>UID: {{userinfo.uid}} </view>
-			</view>
-			<view class="icon iconfont icon-jinru"></view>
-		</view>
-		<!-- 数据 -->
-		<view class="home-data flex align-middle">
-			<!-- <block v-for="(item,index) in homedata" :key="index">
-				<view class="u-f-ajc u-f1 u-f-l"><text>{{item.num}}</text>{{item.name}}</view>
-			</block> -->
-			<view class=""><text>{{mine.dynamic}}</text>动态</view>
-			<view class=""><text>{{mine.article}}</text>文章</view>
-			<view class="" @tap="toUser"><text>{{mine.fans}}</text>粉丝</view>
-			<view class="" @tap="toUser"><text>{{mine.follow}}</text>关注</view>
-		</view>
-		<!-- 广告位 -->
-		<view class="home-adv flex align-middle justify-center">
-			<image src="../../static/images/demo20.jpg" mode="widthFix" lazy-load></image>
-		</view>
-		<!-- 功能 -->
-		<view class="list" v-if="isLogin">
-			<u-cell-group>
-				<u-cell icon="setting-fill" title="设置" isLink url="/pages/userset/userset"></u-cell>
-				<!-- <u-cell icon="integral-fill" title="会员等级" value="新版本"></u-cell> -->
-			</u-cell-group>
-		</view>
-		<!-- <button type="default" @click="touserspace">测试</button> -->
-
+	<view>
+		<u-tabs ref="tab" class="tab" :list="tabList" lineColor="#FFE933" :itemStyle="tabItemStyle" :current="tabindex"
+			@click="onTabClick">
+		</u-tabs>
+		<!-- <view class="content" :style="contentHeight">
+			<mescroll-item :top="tabHeight+10" >
+				<template v-slot:default="{data:list}">
+					<recommendList :list="list"></recommendList>
+				</template>
+			</mescroll-item>
+		</view> -->
+		<!-- <swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
+			<swiper-item v-for="(tab,i) in tabList" :key="i">
+				<mescroll-swiper-item :top="tabHeight" :tabindex="tabindex" :current="i">
+					<template v-slot:default="{data:list}" >
+						{{tabindex}}{{i}}
+						<recommendList :list="list" v-show="tabindex==i&&i==0"></recommendList >
+						<template v-show="tabindex==i&&i==1">
+							<article-item v-for="item in list" :article="item"></article-item>
+						</template>
+						
+					</template>
+					<template v-slot:default="{data:list}" >
+						{{tabindex}}{{i}}
+						<article-item v-for="item in list" :article="item"></article-item>
+						
+					</template>
+				</mescroll-swiper-item>
+			</swiper-item>
+		</swiper> -->
+		<swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
+			<swiper-item>
+					<mescroll-swiper-item-dynamic></mescroll-swiper-item-dynamic>
+			</swiper-item>
+			<swiper-item>
+					<mescroll-swiper-item-article :current="1" :tabindex="tabindex"></mescroll-swiper-item-article>
+			</swiper-item>
+			<swiper-item>
+					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+			</swiper-item>
+			<swiper-item>
+					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+			</swiper-item>
+			<swiper-item>
+					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex'
+	import mescrollSwiperItemDynamic from './mescroll-swiper-item-dynamic.vue'
+	import mescrollSwiperItemArticle from './mescroll-swiper-item-article.vue'
+	// import mescrollSwiperItem from './mescroll-swiper-item.vue'
+	// import mescrollItem from './mescroll-item.vue'
+	// import recommendList from './recommendList.vue'
 	export default {
-		components: {},
+		components: {
+			mescrollSwiperItemDynamic,
+			mescrollSwiperItemArticle,
+			// mescrollSwiperItem,
+			// mescrollItem,
+			// recommendList
+		},
 		data() {
 			return {
-
-				mine: {
-					article: 0,
-					dynamic: 0,
-					fans: 0,
-					follow: 0,
+				tabHeight: 0,
+				tabindex: 0,
+				linewidth: 38,
+				triggered: false,
+				isOpenRefresh: true, // 是否开启下拉
+				list: {
+					recommend: [],
+					article: [],
+					yule: []
 				},
+				tabItemStyle: {
+					'min-width': "80px",
+				},
+				downOption: {
+					auto: false //是否在初始化后,自动执行downCallback; 默认true
+				},
+
+				tabList: [{
+						name: "推荐",
+						id: "recommend"
+					},
+					{
+						name: "文章",
+						id: "article"
+					},
+					{
+						name: "音乐",
+						id: "yule"
+					},
+
+					{
+						name: "视频",
+						id: "video"
+					},
+					{
+						name: "小说",
+						id: "keji"
+					},
+					{
+						name: "游戏",
+						id: "keji"
+					},
+
+				],
 
 			}
 		},
 		onLoad() {
-			this.getMine()
+			this.windowHeight = 500
+			uni.getSystemInfo({
+				success: res => {
+					console.log(res)
+					let height = res.windowHeight - uni.upx2px(100);
+					this.windowHeight = res.windowHeight;
+				}
+			});
+		},
+		onShow() {
+
+			this.$nextTick(() => {
+				console.log(this.$refs.tab.$el.clientHeight)
+				this.tabHeight = this.$refs.tab.$el.clientHeight
+			})
+		},
+		//导航栏
+		onNavigationBarSearchInputClicked() {
+			uni.navigateTo({
+				url: '../search/search'
+			});
+		},
+		onNavigationBarButtonTap(e) {
+			console.log(e)
+			if (e.index == 1) {
+				uni.navigateTo({
+					url: '../postDynamic/postDynamic'
+				}, true);
+			}
 		},
 		computed: {
-			...mapState(['userinfo', 'isLogin'])
+			contentHeight() {
+				let windowHeight = this.windowHeight;
+				let tabHeight = this.tabHeight
+				console.log(windowHeight, tabHeight)
+				return {
+					height: `calc(${windowHeight}px - ${tabHeight}px)`
+				}
+			}
 		},
 		methods: {
-			toUser(){
-				uni.navigateTo({
-					url: '../userlist/userlist'
-				},true)
+			swiperChange(e) {
+				this.tabindex = e.detail.current
 			},
-			touserspace() {
-				console.log('weee')
-				uni.navigateTo({
-					url: '../../pages/userspace/userspace'
-				}, true)
+			onTabClick(item) {
+				console.log(item)
+				this.tabindex = item.index;
+
+
 			},
-			tologin() {
-				uni.navigateTo({
-					url: '../login/login'
-				})
-			},
-			getMine() {
-				if (!this.isLogin) return;
-				this.$api.getMine().then(res => {
-					console.log(res)
-					this.mine = res.data
-				}).catch(err => {
-					console.log(err)
-				})
+
+
+		},
+		watch: {
+			tabindex(e) {
+
 			}
-		}
+		},
+
+
 	}
 </script>
-
-<style>
-	.wrap {
-		padding-top: 40px;
+<style scoped>
+	.swiper-box {
+		height: 100vh;
 	}
 
-	.home-nologin-title {
-		font-size: 32rpx;
+	::v-deep .u-tabs__wrapper__nav__item__text {
+		font-size: 18px;
 	}
 
-	.home-password {
-		font-size: 29rpx;
-	}
 
-	.home-password>view {
-		color: #D5D5D5;
-	}
 
-	.home-adv {
-		padding: 20rpx;
-	}
-
-	.home-adv>image {
-		border-radius: 20rpx;
-		height: 150rpx;
-	}
-
-	.home-list {
-		padding: 20rpx 40rpx;
-	}
-
-	.home-islogin {
-		padding: 20rpx 40rpx;
-	}
-
-	.home-islogin .image {
-		margin-right: 15rpx;
-	}
-
-	.home-islogin>view:first-of-type>view:nth-child(1) {
-		font-size: 32rpx;
-	}
-
-	.home-islogin>view:first-of-type>view:nth-child(2) {
-		color: #929292;
-	}
-
-	.home-islogin>view:last-of-type {
+	.scroll {
 		height: 100%;
 	}
 
-	.home-data {
-		padding: 30rpx;
+	.tab {
+		padding-bottom: 15px;
 	}
 
-	.home-data>view {
-		color: #999999;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		flex:1
-	}
-
-	.home-data>view>text {
-		color: #343434;
-		font-size: 33rpx;
-		font-weight: bold;
-	}
-
-	.list {
-		padding: 0 50rpx;
+	.content {
+		/* overflow: auto; */
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<view class="fixed box">
+	<view class="fixed box ">
 		<view class="add flex align-middle">
 			<view class="icon iconfont icon-smile" @click="show_emoji=!show_emoji"></view>
 			<input type="text" ref="inputRef" :placeholder="placeholder" v-model="text" @focus="onFocus"
@@ -18,8 +18,7 @@
 			placeholder: {
 				type: String,
 				default: '文明发言'
-			},
-			
+			}
 		},
 		data() {
 			return {
@@ -92,7 +91,6 @@
 		width: 100%;
 		background: #FFFFFF;
 		z-index: 11070;
-
 		.add {
 			height: 120rpx;
 			border-top: 1px solid #EEEEEE;

@@ -25,7 +25,7 @@ const socket = new SocketService({
 		console.log('P2pmsg', msg);
 		store.commit('set_receive', msg)
 		//在聊天页面
-		if (getRoutePath().includes('pages/userchat/userchat')) {
+		if (getRoutePath().includes('pages/chat/chat')) {
 			let recv_accounts = [msg.toAccount, msg.fromAccount.uid].sort((a, b) => a - b).join();
 			let cur_accounts=store.state.currentChatAccout.accounts.join()
 			//消息是否发给自己
@@ -51,9 +51,9 @@ const socket = new SocketService({
 	},
 	//公共聊天消息处理
 	message(msg) {
-		console.log(msg,getRoutePath());
+		console.log('getRoutePath',getRoutePath());
 		store.commit('set_receive', msg)
-		if (getRoutePath().includes('pages/userchat/userchat')) {
+		if (getRoutePath().includes('pages/chat/chat')) {
 			//消息是当前聊天群的
 			if (msg.toAccount === store.state.currentChatAccout.uid) {
 				store.commit('set_chatList', [msg])
@@ -67,7 +67,7 @@ const socket = new SocketService({
 	//监听群聊事件
 	onGroupMsg(msg) {
 	    console.log('群消息--', msg);
-	    if (getRoutePath().includes('pages/userchat/userchat')) {
+	    if (getRoutePath().includes('pages/chat/chat')) {
 	        //消息是当前聊天群的
 	        if (msg.toAccount === store.state.currentChatAccout.uid) {
 	            store.commit('set_chatList', [msg])

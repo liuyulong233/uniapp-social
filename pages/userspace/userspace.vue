@@ -55,7 +55,6 @@
 	import {
 		mapState
 	} from 'vuex'
-	import userSpacePop from '../../compoents/userspace/user-space-pop.vue';
 	
 	export default {
 		components: {},
