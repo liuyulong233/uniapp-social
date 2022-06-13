@@ -1,9 +1,9 @@
-uniapp 糗事百科项目
+uniapp 糗事百科项目  
 使用 uview2 改造
 
 	
 	
-#开发app遇到的问题
+# 开发app遇到的问题
 1.没有doucument window,doucument window上的方法不能使用  
 2.image层级较高  
 3.输入框键盘遮挡问题  
