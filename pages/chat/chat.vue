@@ -31,6 +31,16 @@
 
 			}
 		},
+		onNavigationBarButtonTap(e) {
+			console.log(e)
+			if (e.index == 0) {
+				if(this.currentChatAccout.type=="GROUP"){
+					uni.navigateTo({
+						url:'../groupInfo/groupInfo?id='+this.currentChatAccout.uid
+					})
+				}
+			}
+		},
 		onLoad() {
 			uni.setNavigationBarTitle({
 				title: this.currentChatAccout.nickname

@@ -1,23 +1,21 @@
 <template>
 	<view>
-		<uni-collapse :accordion="true">
-			<uni-collapse-item v-for="item in accordion" :key="item.id" :title="item.title" :show-animation="item.animation">
-				<text class="content">{{ item.content }}</text>
-			</uni-collapse-item>
-		</uni-collapse>
-		<view class="body">
-			<button class="user-set-btn" type="primary">意见反馈</button> 
+		
+		<u-collapse @change="change" @close="close" @open="open">
+			<u-collapse-item   v-for="item in accordion" :key="item.id" :title="item.title">
+				<text class="content">{{item.content}}</text>
+			</u-collapse-item>
+
+		</u-collapse>
+		<view class="btn">
+			<button class="user-set-btn" type="primary">意见反馈</button>
 		</view>
 	</view>
 </template>
 
 <script>
-	import uniCollapse from '../../compoents/uni-collapse/uni-collapse.vue' 
-	import uniCollapseItem from '../../compoents/uni-collapse-item/uni-collapse-item.vue'
 	export default {
-		components:{
-			uniCollapse,
-			uniCollapseItem
+		components: {
 		},
 		data() {
 			return {
@@ -43,18 +41,28 @@
 			}
 		},
 		methods: {
-			
+			open(e) {
+				// console.log('open', e)
+			},
+			close(e) {
+				// console.log('close', e)
+			},
+			change(e) {
+				// console.log('change', e)
+			}
 		}
 	}
 </script>
 
-<style>
-@import "../../common/form.css";
-.content {
-		padding: 15px;
-		font-size: 14px;
-		line-height: 20px;
+<style scoped> 
+	.content {
 		background-color: #f9f9f9;
 		color: #666;
+	}
+	::v-deep .u-collapse-item__content__text{
+		background-color: #f9f9f9;
+	}
+	.btn{
+		margin-top: 20px;
 	}
 </style>

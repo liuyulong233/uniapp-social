@@ -45,6 +45,9 @@
 			<swiper-item>
 					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
+			<swiper-item>
+					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+			</swiper-item>
 		</swiper>
 	</view>
 </template>

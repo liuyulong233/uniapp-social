@@ -59,7 +59,7 @@ const $u = {
 
 // $u挂载到uni对象上
 uni.$u = $u
-
+// console.log('uni.$u = $u',uni.$u)
 const install = (Vue) => {
     // 时间格式化，同时两个名称，date和timeFormat
     Vue.filter('timeFormat', (timestamp, format) => uni.$u.timeFormat(timestamp, format))

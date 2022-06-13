@@ -11,7 +11,7 @@ function getOption() {
 	// console.log('getOption',store.state.isLogin)
 	if (!store.state.isLogin) {
 		//#ifdef H5
-		let userinfo = JSON.parse(sessionStorage.getItem("temp_userinfo"));
+		let userinfo = JSON.parse(sessionStorage.getItem("temp_userinfo")||'{}');
 		//#endif
 		//#ifndef H5 
 		let userinfo = JSON.parse(uni.getStorageSync("temp_userinfo")||'{}');

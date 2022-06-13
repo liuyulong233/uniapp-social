@@ -90,7 +90,7 @@
 				let paging
 
 				let res = await this.getDynamicList(page.num, page.size);
-				console.log('上拉加载的回调', res)
+				// console.log('上拉加载的回调', res)
 				data = res.data;
 				paging = res.paging
 

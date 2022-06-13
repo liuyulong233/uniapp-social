@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import App from './App'
 import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
 import config from '@/api/config.js'
 import * as api from '@/api/index.js'
 import '@/util/navigate.js'
-Vue.use(uView)
+console.log('mainjs ---')
 
 import store from './store'
 import socket from './socket/index.js'

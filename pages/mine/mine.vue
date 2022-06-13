@@ -70,10 +70,10 @@
 			}, 1000);
 		},
 		onShow() {
-			
+			this.getMine()
 		},
 		onLoad() {
-			this.getMine()
+			
 		},
 		computed: {
 			...mapState(['userinfo', 'isLogin'])

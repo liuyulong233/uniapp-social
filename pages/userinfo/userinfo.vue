@@ -37,13 +37,13 @@
 				<view class="icon iconfont icon-bianji1"></view>
 			</view>
 		</view> -->
-		<view class="user-info-list ">
+		<!-- <view class="user-info-list ">
 			<view>职业</view>
 			<view class="" @tap="changedan('job')">
 				<view>{{userinfo.job}}</view>
 				<view class="icon iconfont icon-bianji1"></view>
 			</view>
-		</view>
+		</view> -->
 		<view class="user-info-list ">
 			<view>住址</view>
 			<view class="" @tap="showMulLinkageThreePicker">

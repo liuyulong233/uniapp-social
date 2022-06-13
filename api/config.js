@@ -1,13 +1,14 @@
 // 此vm参数为页面的实例，可以通过它引用vuex中的变量
 let baseURL;
-uni.WS_API = 'ws://175.178.33.148:3002'
+uni.WS_API = 'wss://liuyulong.xyz'
 if (process.env.NODE_ENV === 'development') {
 	console.log('开发环境')
-	uni.API_URL = baseURL = 'http://192.168.0.107:3000'
-	uni.API_URL = baseURL = 'http://175.178.33.148:3000'
+	// uni.API_URL = baseURL = 'http://192.168.0.107:3000'
+	// uni.API_URL = baseURL = 'http://175.178.33.148:3000'
+	uni.API_URL = baseURL = 'https://liuyulong.xyz'
 } else {
 	console.log('生产环境')
-	uni.API_URL = baseURL = 'http://175.178.33.148:3000'
+	uni.API_URL = baseURL = 'https://liuyulong.xyz'
 }
 export default (vm) => {
 	// 初始化请求配置
@@ -44,15 +45,24 @@ export default (vm) => {
 	uni.$u.http.interceptors.response.use((response) => {
 		/* 对响应成功做点什么 可使用async await 做异步操作*/
 		const data = response.data
-
+		// console.log('response', data)
 		// 自定义参数
 		const custom = response.config?.custom
 		if (data.code !== 200) {
 			// 如果没有显式定义custom的toast参数为false的话，默认对报错进行toast弹出提示
 			if (custom.toast !== false) {
-				uni.$u.toast(data.message)
+				// console.log(data)
+				if(data.code!=415){
+					uni.$u.toast(data.message)
+				}
+				
 			}
-
+			if (data.code === 400) {
+				// console.log("重新登录")
+				uni.reLaunch({
+					url: '/pages/login/login'
+				})
+			}
 			// 如果需要catch返回，则进行reject
 			if (custom?.catch) {
 				return Promise.reject(data)

@@ -1,5 +1,5 @@
 <template>
-	<view class="h-full relative overflow-hidden">
+	<view class="h-full relative overflow-hidden" :style="{'padding-top':statusBarHeight+'px'}">
 		<view class="bg-1 absolute">
 		</view>
 		<view class="bg-2 absolute">
@@ -121,8 +121,8 @@
 	.container {}
 
 	.bg-1 {
-		left: -159rpx;
-		top: -150rpx;
+		left: -230rpx;
+		top: -180rpx;
 		width: 600rpx;
 		height: 600rpx;
 		border-radius: 500rpx;
@@ -142,13 +142,13 @@
 
 	.register {
 		right: 15px;
-		top: 15px;
+		top: 18px;
 		font-size: 20px;
 		font-weight: bold;
 	}
 
 	.title {
-		margin-top: 250rpx;
+		margin-top: 240rpx;
 		margin-bottom: 50rpx;
 		font-size: 80rpx;
 		color: rgba(121, 72, 234, 0.9);
