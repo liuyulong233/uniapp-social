@@ -9,7 +9,7 @@ origin-static/
 compoents/
 # Other files and folders
 .settings/
-
+manifest.json
 # Executables
 *.swf
 *.air
