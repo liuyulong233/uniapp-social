@@ -1,7 +1,8 @@
-uniapp 糗事百科项目  
+参考了 糗事百科项目  
 使用 uview2 改造
 
-	
+## 接口文档
+[接口文档](https://docs.apipost.cn/preview/b898423ab099b57a/f662da46a6e64085?target_id=34d01cc5-2926-4c93-979f-a73d403b8a60#b501d3e4-fe23-4287-99ff-8fb00795de79)
 	
 # 开发app遇到的问题
 1.没有doucument window,doucument window上的方法不能使用  
@@ -20,7 +21,17 @@ uniapp 糗事百科项目
 	1.不使用const http = uni.$u.http，用uni.$u.http请求  
 	2.在App.vue 先引入import uView from '@/uni_modules/uview-ui'  
 5.首页 tab 标签内容 触发上拉加载后，tabs标签上滑了  
+app 环境 $refs.tab.$el.clientHeight失效，因为没有dom  
+使用 uni.createSelectorQuery().in(this)解决 
+```
+const query = uni.createSelectorQuery().in(this);
+query.select('#id').boundingClientRect(data => {
+  console.log("得到布局位置信息" + JSON.stringify(data));
+  console.log("节点离页面顶部的距离为" + data.top);
+}).exec();
+```
 
+## 只有小程序能够获得导航栏高度，app、H5是没有的，所以高度这两端的导航栏高度是设屎的45px
 
 
 

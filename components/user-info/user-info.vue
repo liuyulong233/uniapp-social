@@ -17,11 +17,8 @@
 </template>
 
 <script>
-	import tagSex from '@/compoents/common/tag-sex.vue'
 	export default {
-		components:{
-			tagSex
-		},
+		
 		props:{
 			userinfo:Object
 		},

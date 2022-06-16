@@ -31,22 +31,22 @@
 		</swiper> -->
 		<swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
 			<swiper-item>
-					<mescroll-swiper-item-dynamic></mescroll-swiper-item-dynamic>
+				<mescroll-swiper-item-dynamic></mescroll-swiper-item-dynamic>
 			</swiper-item>
 			<swiper-item>
-					<mescroll-swiper-item-article :current="1" :tabindex="tabindex"></mescroll-swiper-item-article>
+				<mescroll-swiper-item-article :current="1" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 			<swiper-item>
-					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+				<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 			<swiper-item>
-					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+				<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 			<swiper-item>
-					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+				<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 			<swiper-item>
-					<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
+				<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -128,8 +128,17 @@
 		onShow() {
 
 			this.$nextTick(() => {
-				console.log(this.$refs.tab.$el.clientHeight)
+				//#ifndef H5
+				const query = uni.createSelectorQuery().in(this);
+				query.select('.tab').boundingClientRect(data => {
+					// console.log("得到布局位置信息", data);
+					this.tabHeight=~~data.height
+				}).exec();
+				//#endif
+				//#ifdef H5
+				console.log('高度',this.$refs.tab.$el.clientHeight)
 				this.tabHeight = this.$refs.tab.$el.clientHeight
+				//#endif
 			})
 		},
 		//导航栏
@@ -149,7 +158,7 @@
 		computed: {
 			contentHeight() {
 				let windowHeight = this.windowHeight;
-				let tabHeight = this.tabHeight
+				let tabHeight = this.tabHeight || ''
 				console.log(windowHeight, tabHeight)
 				return {
 					height: `calc(${windowHeight}px - ${tabHeight}px)`

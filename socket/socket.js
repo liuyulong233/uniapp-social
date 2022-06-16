@@ -57,7 +57,7 @@ class SocketService {
 	}
 	//连接服务器方法
 	connect() {
-
+		return
 		let obj = getOption()
 		//连接服务器
 		console.log(uni.WS_API)
@@ -115,32 +115,32 @@ class SocketService {
 		// };
 	}
 	close() {
-		this.ws.close()
+		this.ws&&this.ws.close()
 	}
 	sendP2PMsg(msg) {
-		this.ws.emit('P2PMsg', msg, (res) => {
+		this.ws&&this.ws.emit('P2PMsg', msg, (res) => {
 			//成功发送到服务端 会执行
 			console.log('发送成功', res);
 		})
 	}
 	//发送群聊消息
 	sendGroupMsg(msg) {
-		this.ws.emit('groupMsg', msg, (res) => {
+		this.ws&&this.ws.emit('groupMsg', msg, (res) => {
 			//成功发送到服务端 会执行
 			console.log('发送成功', res);
 		})
 	}
 
 	leaveRoom(groupId) {
-		this.ws.emit('leaveRoom', groupId)
+		this.ws&&this.ws.emit('leaveRoom', groupId)
 	}
 	//监听到agreeJoin事件时调用 加群
 	joinGroup(obj) {
-		this.ws.emit('joinGroup', obj)
+		this.ws&&this.ws.emit('joinGroup', obj)
 	}
 
 	send(msg) {
-		this.ws.send(msg)
+		this.ws&&this.ws.send(msg)
 	}
 }
 export default SocketService

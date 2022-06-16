@@ -1,5 +1,5 @@
 <template>
-	<u--image  :src="src" :width="width" :height="width" shape="circle">
+	<u--image  :src="src|formatImage" :width="width" :height="width" shape="circle">
 		<view slot="error">
 			<image :style="{'width': width,'height': width,'border-radius': '100%'}" :src="error" mode="widthFix" lazy-load></image>
 		</view>
@@ -19,6 +19,9 @@
 				type:String,
 				default:'../../static/images/avatar/0.png'
 			}
+		},
+		computed:{
+			
 		}
 	}
 </script>

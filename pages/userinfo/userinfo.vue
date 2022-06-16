@@ -122,7 +122,7 @@
 			//选择日期
 			bindDateChange(e) {
 				this.userinfo.birthday = e.target.value;
-				this.userinfo.age=this.getAge(e.target.value)
+				this.userinfo.age = this.getAge(e.target.value)
 			},
 			//选择图片
 			choessimg() {
@@ -174,21 +174,21 @@
 				var birthday = new Date(date.replace(/-/g, "\/"));
 				var d = new Date();
 				var age = d.getFullYear() - birthday.getFullYear() - ((d.getMonth() < birthday.getMonth() || d
-				.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate()) ? 1 : 0);
-				return age+''
+					.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate()) ? 1 : 0);
+				return age + ''
 			},
 			upload(path) {
 				this.$api.upload(path).then(([err, res]) => {
 					if (err) {
 						console.log('file-err', err)
 					}
-					let data = JSON.parse(res.data)
-					let url = uni.API_URL + data.url;
+					res = JSON.parse(res.data)
+					let url = uni.API_URL + res.data.url;
 					this.userinfo.avatar = url
 					// this.fileList.push({
 					// 	url:data.url
 					// })
-					console.log('file', url, data)
+					console.log('file', url, res.data)
 				}).catch(err => {
 					console.log('file-err', err)
 				})

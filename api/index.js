@@ -16,10 +16,10 @@ export const upload = (file) => {
 	const token = uni.getStorageSync('token');
 	//#endif
 	return uni.uploadFile({
-		url: uni.API_URL + '/api/upload', //仅为示例，非真实的接口地址
+		url: uni.API_URL + '/api/app/upload', //仅为示例，非真实的接口地址
 		filePath: file,
 		header: {
-			authorization: 'beare ' + token
+			authorization: 'bearer ' + token
 		},
 		name: 'file',
 		formData: {},
@@ -35,7 +35,7 @@ export const getDynamics = (data) => uni.$u.http.get('/api/app/dynamic', {
 export const getComments = (data) => uni.$u.http.get('/api/app/comment', {
 	params: data
 })
-export const getUpgrade= (data) => uni.$u.http.get('http://192.168.0.107:3000/api/app/upgrade', {
+export const getUpgrade= (data) => uni.$u.http.get('/api/app/upgrade', {
 	params: data
 })
 //评论发布
@@ -171,6 +171,6 @@ export const getTopicDynamics=(data) => uni.$u.http.get('/api/app/topic/dynamic'
 	params: data
 })
 //根据动态id找话题id
-export const getTopicId=(data) => uni.$u.http.get('/api/app/topic_id', {
-	params: data
-})
+// export const getTopicId=(data) => uni.$u.http.get('/api/app/topic_id', {
+// 	params: data
+// })

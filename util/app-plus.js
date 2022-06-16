@@ -39,11 +39,11 @@ export async function checkUpgrade() {
 		"version": versionInfo.version,
 		// "name": version.name
 	};
-	console.log('checkUpgrade',info)
+	// console.log('checkUpgrade',info)
 	//查询app是否有最新版本
 	getUpgrade(info).then(res => {
 		let data = res.data;
-		console.log('checkUpgrade-1',data)
+		// console.log('checkUpgrade-1',data)
 		//没有最新版本可升级
 		if (!data.is_upgrade) return;
 		//跳转到更新

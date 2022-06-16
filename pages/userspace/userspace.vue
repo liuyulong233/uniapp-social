@@ -2,19 +2,16 @@
 	<view>
 		<!-- 头部 -->
 		<user-info :userinfo="info"></user-info>
-		<!-- 数据 -->
-		<view class="userspace-data">
-			<!-- <homeData :homedata="spacedata"></homeData> -->
-		</view>
-		<!-- 线 -->
-		<view class="userspace-xian"></view>
+		
 		<!-- 切换导航 -->
 
-		<view class="content" :style="{height:(windowHeight - 44)+'px'}">
+		<view class="content" :style="{height:windowHeight +'px'}">
 			<u-tabs ref="tab" class="tab" :list="tabList" lineColor="#FFE933" :itemStyle="tabItemStyle"
 				:current="tabindex" @click="onTabClick">
 			</u-tabs>
-			<swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
+			<swiper class="swiper" :style="contentHeight" :current="tabindex" @change="swiperChange">
+			
+				
 				<swiper-item>
 					<mescroll-swiper-item ref="mescroll_0" :top="tabHeight" :tabindex="tabindex" :current="0"
 						@down="downCallback" @up="upCallback">
@@ -106,9 +103,8 @@
 			this.windowHeight = 500
 			uni.getSystemInfo({
 				success: res => {
-					console.log(res)
-					let height = res.windowHeight - uni.upx2px(100);
-					this.windowHeight = res.windowHeight;
+					console.log('getSystemInfo',res)
+					this.windowHeight = res.windowHeight -res.statusBarHeight -43;
 				}
 			});
 			this.getUserInfo()
@@ -116,8 +112,12 @@
 		onShow() {
 
 			this.$nextTick(() => {
-				console.log(this.$refs.tab.$el.clientHeight)
-				this.tabHeight = this.$refs.tab.$el.clientHeight
+				const query = uni.createSelectorQuery().in(this);
+				query.select('.tab').boundingClientRect(data => {
+					// console.log("得到布局位置信息", data);
+					this.tabHeight=~~data.height
+					
+				}).exec();
 			})
 		},
 		onReachBottom() {},
@@ -125,13 +125,14 @@
 
 		},
 		computed: {
-			...mapState(['userinfo']),
+			...mapState(['userinfo','set_userinfo']),
 			isMe() {
 				return this.userinfo.uid == this.user_uid
 			},
 			info() {
 				console.log(this.isMe)
 				if (this.isMe) {
+					// this.set_userinfo(this.otherinfo)
 					return this.userinfo
 				} else {
 					return this.otherinfo
@@ -140,9 +141,10 @@
 			contentHeight() {
 				let windowHeight = this.windowHeight;
 				let tabHeight = this.tabHeight
-				console.log(windowHeight, tabHeight)
+				// console.log("contentHeight",windowHeight, tabHeight)
+			
 				return {
-					height: `calc(${windowHeight}px - ${tabHeight}px - 44px)`
+					height: `calc(${windowHeight}px - ${tabHeight}px)`
 				}
 			}
 		},
@@ -187,13 +189,13 @@
 				if (current == 0) {
 
 					let res = await this.getDynamicList();
-					console.log('下拉刷新的回调', res)
+					// console.log('下拉刷新的回调', res)
 					instance.list = res.data;
 					paging = res.paging
 					instance.mescroll.endSuccess();
 				} else if(current == 1) {
 					let res = await this.getArticleList();
-					console.log('下拉刷新的回调', res)
+					// console.log('下拉刷新的回调', res)
 					instance.list = res.data;
 					instance.mescroll.endSuccess();
 					paging = res.paging
@@ -271,5 +273,9 @@
 
 	.content {
 		touch-action: auto;
+		overflow: hidden;
+	}
+	.swiper{
+		/* border-bottom:1px solid red; */
 	}
 </style>

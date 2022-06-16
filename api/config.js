@@ -32,7 +32,7 @@ export default (vm) => {
 		const token = uni.getStorageSync('token');
 		//#endif
 		if (token) {
-			config.header.authorization = 'beare ' + token
+			config.header.authorization = 'bearer ' + token
 		}
 
 		// }
@@ -44,6 +44,16 @@ export default (vm) => {
 	// 响应拦截
 	uni.$u.http.interceptors.response.use((response) => {
 		/* 对响应成功做点什么 可使用async await 做异步操作*/
+		// console.log('response',response)
+		if(response.header.authorization){
+			let token=response.header.authorization;
+			//#ifdef H5
+			sessionStorage.setItem('token',token)
+			//#endif
+			//#ifndef H5 
+			uni.setStorageSync('token',token);
+			//#endif
+		}
 		const data = response.data
 		// console.log('response', data)
 		// 自定义参数

@@ -7,7 +7,7 @@ let userinfo = JSON.parse(sessionStorage.getItem('userinfo') || null) || {}
 let isLogin = sessionStorage.getItem('isLogin') || false
 //#endif
 //#ifndef H5
-let userinfo = JSON.parse(uni.getStorageSync('userinfo') ||'{}') 
+let userinfo = JSON.parse(uni.getStorageSync('userinfo') || '{}')
 let isLogin = uni.getStorageSync('isLogin') || false
 //#endif
 const store = new Vuex.Store({
@@ -114,9 +114,12 @@ const store = new Vuex.Store({
 			//#endif
 			store.commit('set_token', val.token)
 			store.commit('set_userinfo', val.data || val.userinfo)
-			console.log('set_login')
-			vm.$socket.close()
-			vm.$socket.connect()
+			console.log('set_login',vm.$socket)
+			if (vm.$socket) {
+				vm.$socket.close()
+				vm.$socket.connect()
+			}
+
 			uni.switchTab({
 				url: '/pages/home/home',
 				fail(err) {

@@ -302,3 +302,8 @@
 .bg-red {
 	background-color: #e54d42;
 }
+
+.comment-avatar{
+	width: 36px;
+	height: 36px;
+}

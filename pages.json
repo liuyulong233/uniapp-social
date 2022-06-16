@@ -453,12 +453,12 @@
 				"selectedIconPath": "static/images/tabbar/zixunsd.png",
 				"text": "话题"
 			},
-			{
-				"pagePath": "pages/message/message",
-				"iconPath": "static/images/tabbar/xiaoxi.png",
-				"selectedIconPath": "static/images/tabbar/xiaoxisd.png",
-				"text": "消息"
-			},
+			// {
+			// 	"pagePath": "pages/message/message",
+			// 	"iconPath": "static/images/tabbar/xiaoxi.png",
+			// 	"selectedIconPath": "static/images/tabbar/xiaoxisd.png",
+			// 	"text": "消息"
+			// },
 			{
 				"pagePath": "pages/mine/mine",
 				"iconPath": "static/images/tabbar/wode.png",

@@ -275,7 +275,7 @@
 							title: '发布成功'
 						})
 						uni.switchTab({
-							url: '/pages/index/index'
+							url: '../home/home'
 						})
 					})
 					.catch((err) => {
@@ -294,10 +294,10 @@
 					.then((res) => {
 						console.log(res);
 						uni.showToast({
-							title: '发布成功'
+							title: '修改成功'
 						})
 						uni.switchTab({
-							url: '/pages/index/index'
+							url: '../home/home'
 						})
 					})
 					.catch((err) => {

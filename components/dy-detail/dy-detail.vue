@@ -1,7 +1,7 @@
 <template>
 	<view class="index-list">
 		<view class="dy-top">
-			<avatar class="image" :src="info.user.avatar"></avatar>
+			<avatar class="image" :src="info.user&&info.user.avatar"></avatar>
 			<!-- <image :src="info.user.avatar" mode="aspectFill"></image> -->
 			<view class="dy-box ">
 				<text class="name ellipsis" @click="goTo">{{info.user.nickname}}</text>
@@ -72,7 +72,7 @@
 					tag: [],
 					uid: 100001,
 					user: {
-
+						nickname:null
 					},
 					create_at: "2022-02-08 11:23",
 					follow: true,
