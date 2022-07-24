@@ -32,6 +32,8 @@ query.select('#id').boundingClientRect(data => {
 ```
 
 ## 只有小程序能够获得导航栏高度，app、H5是没有的，所以高度这两端的导航栏高度是设屎的45px
+## mescroll 不能触发上拉加载
+mescroll-uni 设置 height
 
 
 

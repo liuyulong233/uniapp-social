@@ -1,6 +1,7 @@
 <template>
-	<mescroll-uni ref="mescrollRef" @init="mescrollInit" :top="top" :down="downOption" @down="downCallback"
-		@up="upCallback">
+	<!-- swiper下使用需要设置高度height -->
+	<mescroll-uni class="scroll" ref="mescrollRef" @init="mescrollInit" :height="height+'px'" :top="top" :down="downOption"
+		@down="downCallback" @up="upCallback">
 		<dy-item v-for="(item,index) in list" :key="index" class="dy-item" :item="item"
 			@follow="(item)=>onFollow(item,index)" @other="(type)=>onOther(type,index)">
 		</dy-item>
@@ -25,6 +26,10 @@
 				type: Number,
 				default: 0
 			},
+			height: {
+				type: [Number,String],
+				default: '100%'
+			},
 		},
 		data() {
 			return {
@@ -48,21 +53,12 @@
 		},
 		methods: {
 
-			//关注
-			onFollow(item, index) {
-				console.log(item, index)
-				uni.showToast({
-					title: '关注成功',
-					mask: true,
-					icon: 'none'
-				})
+			mescrollInit(res) {
+				console.log('mescrollInit', res);
 			},
-			//顶踩操作
-			onOther(type, index) {
-				console.log(type, index)
 
-			},
 			getDynamicList(num, size) {
+				console.log(num, size)
 				return this.$api.getDynamics({
 					page: num,
 					page_size: size
@@ -94,7 +90,7 @@
 				data = res.data;
 				paging = res.paging
 
-
+				this.mescroll.endSuccess();
 				if (data.length == 0) {
 					this.mescroll.endBySize(0, 0)
 				} else {
@@ -109,14 +105,16 @@
 </script>
 
 <style scoped lang="scss">
-	//解决 swiper 对 fix的影响
-	::v-deep .mescroll-uni-fixed {
-		height: 100% !important;
-		top: 0 !important;
-	}
+	
 
 	.dy-item {
 		border-bottom: 16rpx solid #F2F2F2;
 		/* margin-bottom: 20px; */
+	}
+
+	//解决touchmove事件和其他某个滚动的操作冲突了
+	::v-deep .uni-scroll-view,
+	.uni-scroll-view {
+		touch-action: pan-y;
 	}
 </style>

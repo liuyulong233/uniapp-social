@@ -4,7 +4,7 @@ uni.WS_API = 'wss://liuyulong.xyz'
 if (process.env.NODE_ENV === 'development') {
 	console.log('开发环境')
 	// uni.API_URL = baseURL = 'http://192.168.0.107:3000'
-	// uni.API_URL = baseURL = 'http://175.178.33.148:3000'
+	// uni.API_URL = baseURL = 'http://127.0.0.1:3000'
 	uni.API_URL = baseURL = 'https://liuyulong.xyz'
 } else {
 	console.log('生产环境')

@@ -71,7 +71,9 @@ const store = new Vuex.Store({
 			//           uid: 100467,
 			//         },
 			//       },
-		]
+		],
+		sys_config:{},
+		user_config:{}
 	},
 	mutations: {
 		set_chatList(state, arr) {
@@ -180,6 +182,12 @@ const store = new Vuex.Store({
 
 
 		},
+		set_user_config(state,value){
+			state.user_config={...value}
+		},
+		set_sys_config(state,value){
+			state.sys_config={...value}
+		}
 	},
 	actions: {
 		get_conversations({
@@ -194,6 +202,15 @@ const store = new Vuex.Store({
 				}).catch(err => {
 					console.log(err)
 				})
+		},
+		get_config({commit}){
+			vm.$api.getConfig({
+				platform:'app'
+			}).then(res=>{
+				let data=res.data;
+				commit('set_user_config',data.user_config||{})
+				commit('set_sys_config',data.sys_config||{})
+			})
 		}
 	},
 	getters: {

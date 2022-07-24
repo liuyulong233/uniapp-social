@@ -2,6 +2,8 @@
 // const uni.$u.http =uni.$u&& uni.$u.http
 // 登录
 export const login = (params, config = {}) => uni.$u.http.post('/api/login', params, config)
+//注销
+export const logout = (params, config = {}) => uni.$u.http.post('/api/app/logout', params, config)
 //注册 
 export const register = (params, config = {}) => uni.$u.http.post('/api/register', params, config)
 // 获取验证码
@@ -35,7 +37,11 @@ export const getDynamics = (data) => uni.$u.http.get('/api/app/dynamic', {
 export const getComments = (data) => uni.$u.http.get('/api/app/comment', {
 	params: data
 })
+//应用更新
 export const getUpgrade= (data) => uni.$u.http.get('/api/app/upgrade', {
+	params: data
+})
+export const getConfig= (data) => uni.$u.http.get('/api/app/config', {
 	params: data
 })
 //评论发布

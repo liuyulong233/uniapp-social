@@ -13,7 +13,7 @@
 			
 				
 				<swiper-item>
-					<mescroll-swiper-item ref="mescroll_0" :top="tabHeight" :tabindex="tabindex" :current="0"
+					<mescroll-swiper-item ref="mescroll_0" :tabindex="tabindex" :current="0"
 						@down="downCallback" @up="upCallback">
 						<template v-slot:default="{data:list}">
 							<dynamicList scene="2" :list="list"></dynamicList>
@@ -22,7 +22,7 @@
 					</mescroll-swiper-item>
 				</swiper-item>
 				<swiper-item>
-					<mescroll-swiper-item ref="mescroll_1" :top="tabHeight" :tabindex="tabindex" :current="1"
+					<mescroll-swiper-item ref="mescroll_1"  :tabindex="tabindex" :current="1"
 						@down="downCallback" @up="upCallback">
 						<template v-slot:default="{data:list}">
 							<article-item v-for="item in list" :article="item" :key="item._id" :scene="1"></article-item>
@@ -30,7 +30,7 @@
 					</mescroll-swiper-item>
 				</swiper-item>
 				<swiper-item>
-					<mescroll-swiper-item ref="mescroll_2" :uid="user_uid" :top="tabHeight" :tabindex="tabindex"
+					<mescroll-swiper-item ref="mescroll_2" :uid="user_uid"  :tabindex="tabindex"
 						:current="2" @down="downCallback" @up="upCallback">
 						<template v-slot:default="{data:list}">
 
@@ -77,24 +77,7 @@
 						id: "other"
 					},
 				],
-				showpop: false,
-				otherinfo: {},
-				linewidth: 38,
-				scroll: 0,
-				tabindex: 0,
-				tablist: [{
-						name: "主页",
-						id: "zhuye"
-					},
-					{
-						name: "糗事",
-						id: "qiushi"
-					},
-					{
-						name: "动态",
-						id: "dongtai"
-					}
-				],
+				
 
 			}
 		},

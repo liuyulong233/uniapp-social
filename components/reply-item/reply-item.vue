@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-comment-list">
 		<view class="uni-comment-face">
-			<image :src="item.user.avatar" mode="widthFix"></image>
+			<image :src="item.user.avatar" class="comment-avatar" mode="aspectFill"></image>
 		</view>
 		<view class="uni-comment-body">
 			<view class=" name"><text>{{item.user.nickname}}</text>
@@ -58,5 +58,9 @@
 	.name{
 		color: #0A98D5;
 		font-size: 30rpx;
+	}
+	.comment-avatar{
+		height: 72rpx;
+		width: 72rpx;
 	}
 </style>

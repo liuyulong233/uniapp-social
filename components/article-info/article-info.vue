@@ -13,8 +13,9 @@
 				</view>
 			</view>
 		</view>
-		<view class="content">
-			<u-parse :content="marked(info.content)"></u-parse>
+		<view class="content markdown-body">
+			<!-- <u-parse :content="content"></u-parse> -->
+			<mp-html :content="content"></mp-html>
 		</view>
 		<view class="index-listfour ">
 			<view class="tip flex align-middle">
@@ -71,8 +72,12 @@
 		created() {
 			this.getDetail()
 		},
+		computed:{
+			content(){
+				return marked(this.info.content||'')
+			}
+		},
 		methods: {
-			marked,
 			//关注
 			follow() {
 				// this.$emit('follow', this.item);

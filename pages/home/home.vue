@@ -4,36 +4,14 @@
 			@click="onTabClick">
 		</u-tabs>
 		<!-- <view class="content" :style="contentHeight">
-			<mescroll-item :top="tabHeight+10" >
-				<template v-slot:default="{data:list}">
-					<recommendList :list="list"></recommendList>
-				</template>
-			</mescroll-item>
+			<mescroll-swiper-item-dynamic :top="100"></mescroll-swiper-item-dynamic>
 		</view> -->
-		<!-- <swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
-			<swiper-item v-for="(tab,i) in tabList" :key="i">
-				<mescroll-swiper-item :top="tabHeight" :tabindex="tabindex" :current="i">
-					<template v-slot:default="{data:list}" >
-						{{tabindex}}{{i}}
-						<recommendList :list="list" v-show="tabindex==i&&i==0"></recommendList >
-						<template v-show="tabindex==i&&i==1">
-							<article-item v-for="item in list" :article="item"></article-item>
-						</template>
-						
-					</template>
-					<template v-slot:default="{data:list}" >
-						{{tabindex}}{{i}}
-						<article-item v-for="item in list" :article="item"></article-item>
-						
-					</template>
-				</mescroll-swiper-item>
-			</swiper-item>
-		</swiper> -->
-		<swiper :style="contentHeight" :current="tabindex" @change="swiperChange">
+		<swiper :style="{height: contentHeight+'px'}" :current="tabindex" @change="swiperChange">
 			<swiper-item>
-				<mescroll-swiper-item-dynamic></mescroll-swiper-item-dynamic>
+				<mescroll-swiper-item-dynamic :height="contentHeight"></mescroll-swiper-item-dynamic>
+				
 			</swiper-item>
-			<swiper-item>
+			<!-- <swiper-item>
 				<mescroll-swiper-item-article :current="1" :tabindex="tabindex"></mescroll-swiper-item-article>
 			</swiper-item>
 			<swiper-item>
@@ -47,7 +25,7 @@
 			</swiper-item>
 			<swiper-item>
 				<mescroll-swiper-item-article :current="2" :tabindex="tabindex"></mescroll-swiper-item-article>
-			</swiper-item>
+			</swiper-item> -->
 		</swiper>
 	</view>
 </template>
@@ -124,6 +102,7 @@
 					this.windowHeight = res.windowHeight;
 				}
 			});
+			
 		},
 		onShow() {
 
@@ -159,10 +138,10 @@
 			contentHeight() {
 				let windowHeight = this.windowHeight;
 				let tabHeight = this.tabHeight || ''
-				console.log(windowHeight, tabHeight)
-				return {
-					height: `calc(${windowHeight}px - ${tabHeight}px)`
-				}
+				console.log(windowHeight-tabHeight)
+				return windowHeight-tabHeight;
+				
+			
 			}
 		},
 		methods: {
@@ -175,7 +154,7 @@
 
 
 			},
-
+			
 
 		},
 		watch: {

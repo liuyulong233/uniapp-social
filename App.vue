@@ -30,6 +30,7 @@
 			})
 			//#endif
 			Vue.prototype.statusBarHeight = uni.getSystemInfoSync().statusBarHeight + 45
+			this.$store.dispatch('get_config')
 			console.log('Vue.prototype.statusBarHeight', Vue.prototype.statusBarHeight)
 		},
 		onShow: function() {

@@ -1,5 +1,5 @@
 <template>
-	<mescroll-uni class="scroll" ref="mescrollRef" @init="mescrollInit" :top="top" :down="downOption"
+	<mescroll-uni class="scroll" ref="mescrollRef" @init="mescrollInit"   :top="top"  :down="downOption"
 		@down="downCallback" @up="upCallback">
 		<slot :data="list">
 
@@ -70,9 +70,8 @@
 </script>
 
 <style scoped lang="scss">
-	//解决 swiper 对 fix的影响
 	::v-deep .mescroll-uni-fixed {
-		top: 0 !important;
+		// top: 0 !important;
 	}
 
 	//解决touchmove事件和其他某个滚动的操作冲突了

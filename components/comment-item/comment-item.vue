@@ -45,4 +45,8 @@
 		color: #0A98D5;
 		font-size: 30rpx;
 	}
+	.comment-avatar{
+		height: 72rpx;
+		width: 72rpx;
+	}
 </style>
